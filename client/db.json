@@ -1,0 +1,21 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "image": "https://www.walkywalk.com/dogs/top-cute-dog-breeds/160-18_top-cute-dog-breeds_7-shar-pei-puppies.jpg",
+      "title": "My Cute little Puppy",
+      "content": "As y'all know, this pic here is not my real dog. I took this pic from google."
+    },
+    {
+      "id": 2,
+      "image": "https://i.pinimg.com/originals/3a/b6/df/3ab6df89088466a99a3bab8081c22b23.jpg",
+      "title": "It's Mille Crepe",
+      "content": "One of my Faves! It's so delly. I love the matcha flavors the most! what's yours?"
+    },
+    {
+      "title": "ahha",
+      "content": "abha123",
+      "id": 3
+    }
+  ]
+}
