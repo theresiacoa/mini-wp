@@ -1,9 +1,11 @@
+require('dotenv').config()
+
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/jurvio', {useNewUrlParser: true});
+mongoose.connect(`${process.env.databaseUrl}`, {useNewUrlParser: true});
 
 const articleRoute = require(`./routes/articleRoute.js`)
 

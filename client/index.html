@@ -10,9 +10,9 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
-  <!-- include summernote css/js -->
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+  <!-- materialize -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css"></script>
 
   <!-- vue js -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -22,8 +22,7 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <!-- bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="wyiwyg.css">
   <title>Jurvio</title>
@@ -131,6 +130,7 @@
                 <p class="d-flex justify-content-center mt-1">{{ drafts }}</p>
               </div>
             </div>
+
             <!-- Filter -->
             <div class="btn-group ml-auto p-2 mr-2">
               <form class="form-inline">
@@ -139,15 +139,15 @@
               </form>
             </div>
           </div>
-          <div class="d-flex col2 mt-2 listJournal" v-for="article in allArticles">
-            <div class="d-flex m-2">
+          <div class="d-flex col2 mt-2 listJournal" v-for="article in filterArticle">
+            <div class="d-flex m-2 col-11">
               <img :src="article.image" alt="" class="img-thumbnail" v-if="article.image">
               <div class="m-3 flex-column" id="content">
                 <h3> {{ article.title }}</h3>
                 <p v-html="article.content"></p>
               </div>
             </div>
-            <div class="ml-auto m-1">
+            <div class="ml-auto m-1 mr-0">
               <a href="" v-on:click.prevent="updateSoon(article)"><img src="https://img.icons8.com/cotton/30/000000/multi-edit.png">&nbsp;</a>
               <a href="" v-on:click.prevent="deleteArticle(article)"><img src="https://img.icons8.com/cotton/30/000000/delete.png"></a>
             </div>
@@ -237,8 +237,20 @@
       components: {
         wysiwyg: vueWysiwyg.default.component,
       },
+      computed: {
+        filterArticle() {
+          let articles = [];
+          this.allArticles.forEach(article => {
+            if (article.title.includes(this.filter)) {
+              articles.push(article)
+            }
+          })
+          return articles;
+        }
+      },
       methods: {
         createArticle() {
+          this.updateData = null;
           axios.post(`${serverUrl}/articles`, {
             title: this.title,
             content: this.text
@@ -296,9 +308,7 @@
               articles.push(article)
             }
           })
-          if (articles.length > 0) {
-            this.allArticles = articles;
-          }
+          this.allArticles = articles;
         },
 
         render(input) {
