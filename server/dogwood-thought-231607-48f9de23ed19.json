@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "dogwood-thought-231607",
+  "private_key_id": "48f9de23ed191695d188231397e129b9db5bddf4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDBi3+7ngbPNkBd\n4Dk4KapLQWmNkMgNJA2/OfcJGxpQYYvB421mu5WCN+v4XEkW3QWxlG1Ul1lZnAos\nKXuLalduKUbzZyAJq9rjONdAoudZYh6i9CAWyPVI2Fv69ZHBtt7abGqDZuoK+BWG\n1tJHb7XkYooFDiFOT5Zhnttu1NYivmGvtbMFDXGrW3zNthLdP4oxOJ5jvnsXgz74\n8AK0dhRJUJCmGyZflpOoa2yT9LaMoszNN7JvnpSpGHC2Wc0wGuuq9+bPZbyVbjWd\n9OlklbX0Z64ZdFrtWV9FtFkix+iWTi3KJs0Dzk7l2o3xnRixAL+raA+YS19X76Xg\na9thEtGJAgMBAAECggEAEcjFtfGxYnzzsSyXVWfOtBeQoWd6WmrDsJyc7INHCbfM\n5cYGGXiHJm4JCstAFA+/JDAlU66MkUVbUe+F4Kum2QKF+HuzX/AgrtxcOx487+Oq\nOQMBp9ZTY5wt54OFHy20kJGBwA1G2DcvkzJOJC5JonDDie9gdBewE8xLEYYRHyQC\nFyCXIweIOJnlf9PnjWL3BgImzcoiKEJc5LZixEmTVQNbXxuE5v55CsZ36sy7naZM\nKDr1PWUz2mnD+KB7Ha0PXS8ISErkRNBVAbtJ6oVgKvptryQKPZxzg/YWmE1/FLcN\n76O4RSio6BodWzWxGUipqPK2G95hV+p3EYxWnPZkYQKBgQD6xfb95yT7x3+J9E+y\nkgA2f1LQP8jF7EjPY6+THnXPPscXrh3Gs6xUVaJLD39U8rztxLQlxGIqp9xNlgkm\n+IUpBsNVLzHquKMN9B40Gota+1sw4cyhXa/WuO8AvhiUoMPryFtRygYb1LrcqTUp\n8ZRdujDPHCsq+fDjq8xXwYusPQKBgQDFlC8uCJ/MhXrvSj+3uexp2BuBHQh/7bxM\nw3L1+fjN0Nzyh6Nro0T2vzWBBxvrvrdJoL14wkIOtT3oBQD+t8pCayOWVKdBVpqd\ngCpiZrkLofYZrOljR3MSWjMrZndo81LhkCK3o4Jk226H0i5x5QNXPv6q6EChm3lR\nYZ/use9TPQKBgFPu1GdQ6Pj4YcCbq90ZrsaOwPoAj0NnfUskk0xLYqT13w8W8NJj\nqqcjbklvK3AUOpXeQ2lsnGqoejzhnbiUb4U2xUQKostr9u8hqMZJqCDQhkoLGUFd\nKRBWH3CBL5r3X/vXuHDcjETeY5idbbTXLZBdVB7Nz8j3lN+uzZsFpakFAoGABytL\nUvZJJhipz0j4aug6JdULmnG9PzcXIAnvf/FkD8PGYJ5/VYaFGBb0EAx7/N/csrU8\nasdRskrtRh/4W0W79xEAJ5JGx14nGhPudceYa02jKmdVyJ5tFHtlY+vB5XL+zOR3\n/gXW02YK6q67tLJEnsPQZc8rmTGVA1jxfq3CK1kCgYAL1QYrs7KfAyBpiq7jJiHQ\nd2xnAcUAVl2NVJxxICyg8qcnc98apTg4aw5VJUmSMA5Q6bEv1pIf9vjs+pasWRmz\n9jVdEk+iyj6TER6PQ044K6yKeEGCHgB4B+AUSF+0Sc+UpDY6Iy73/m4BVMyvycm5\nkJcBsUkJMwwcg6Yqx/euXA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "jurvio-imagestorage@dogwood-thought-231607.iam.gserviceaccount.com",
+  "client_id": "103063292834768179959",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/jurvio-imagestorage%40dogwood-thought-231607.iam.gserviceaccount.com"
+}

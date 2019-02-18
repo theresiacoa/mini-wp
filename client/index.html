@@ -6,13 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <!-- include libraries(jQuery, bootstrap) -->
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="google-signin-client_id" content="490671978345-hd2743592omfp3qhpp9jvhj42k3gnmqi.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 
-  <!-- materialize -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css"></script>
+  <!-- MDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/css/mdb.min.css" rel="stylesheet">
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/js/mdb.min.js"></script>
 
   <!-- vue js -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -21,307 +29,58 @@
   <!-- swal -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-  <!-- bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="wyiwyg.css">
-  <title>Jurvio</title>
+  <title>JURVIO</title>
 </head>
 
 <body>
-  <div id="app">
-
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <a class="navbar-brand" href="#" v-on:click.prevent="render('home')">Jurvio</a>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="#" v-on:click.prevent="render('home')">Reader</a>
-        </div>
+  <div id="app" class="w-10">
+    <div class="pb-5">
+      <navbar_bf_login @page_status="renderPage" v-if="navbar_status === 'public'"></navbar_bf_login>
+      <navbar_af_login @page_status="renderPage" v-if="navbar_status === 'private'"></navbar_af_login>
+    </div>
+    <div>
+      <register @page_status="renderPage" v-if="page_status === 'register'"></register>
+      <login @page_status="renderPage" v-if="page_status === 'login'"></login>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <events_of_the_day @event="readMore" :all_articles="all_articles" v-if="page_status === ''"></events_of_the_day>
       </div>
-      <form class="write-button">
-        <button type="button" class="btn btn-outline-black" v-on:click.prevent="render('write')"><img src="https://img.icons8.com/cotton/25/000000/edit.png"></button>
-      </form>
-    </nav>
-
-    <!-- Page -->
-    <div id="page" v-if="pageRender === 'home'">
-      <div class="d-flex justify-content-center">
-        <div class="col-sm-2">
-          <div class="d-flex p-2">
-            <img src="https://img.icons8.com/cotton/30/000000/laptop.png">
-            <p class="content">View Site</p>
-          </div>
-          <div class="d-flex p-2">
-            <img src="https://img.icons8.com/cotton/30/000000/bar-chart.png">
-            <p class="content">Stats</p>
-          </div>
-          <div class="d-flex p-2">
-            <img src="https://img.icons8.com/cotton/30/000000/time.png">
-            <p class="content">Activity</p>
-          </div>
-          <div class="d-flex p-2">
-            <img src="https://img.icons8.com/cotton/30/000000/planner.png">
-            <p class="content">Plan</p>
-          </div>
-          <br><br>
-
-          <h6>Manage</h6>
-          <div class="d-flex p-2">
-            <img src="https://img.icons8.com/cotton/30/000000/overview-pages-1.png">
-            <p class="content">Site Page</p>
-          </div>
-          <div class="d-flex p-2">
-            <img src="https://img.icons8.com/cotton/30/000000/document-1.png">
-            <p class="content">Blog Posts</p>
-          </div>
-          <div class="d-flex p-2">
-            <img src="https://img.icons8.com/cotton/30/000000/gallery.png">
-            <p class="content">Media</p>
-          </div>
-          <div class="d-flex p-2">
-            <img src="https://img.icons8.com/cotton/30/000000/talk.png">
-            <p class="content">Comments</p>
-          </div>
-          <div class="d-flex p-2">
-            <img src="https://img.icons8.com/cotton/30/000000/download-from-cloud.png">
-            <p class="content">Import</p>
-          </div>
-          <div class="d-flex p-2">
-            <img src="https://img.icons8.com/cotton/30/000000/filled-chat.png">
-            <p class="content">Feedbacks</p>
-          </div>
-          <div class="d-flex p-2">
-            <img src="https://img.icons8.com/cotton/30/000000/wall-socket-with-plug.png">
-            <p class="content">Plugins</p>
-          </div>
-          <br><br>
-
-          <h6>Personalize</h6>
-          <div class="d-flex p-2">
-            <img src="https://img.icons8.com/cotton/30/000000/horizontal-settings-mixer.png">
-            <p class="content">Customize</p>
-          </div>
-
-        </div>
-        <div class="col-sm">
-
-          <!-- headers -->
-          <div class="card bg-dark text-white">
-            <img class="card-img" src="http://www.humanresourcesmba.net/wp-content/uploads/2017/08/desk-coffee-800x400.jpg" alt="Card image">
-            <div class="card-img-overlay d-flex align-items-end flex-column">
-              <h5 class="card-title">Stay Hungry, Stay Foolish</h5>
-              <p class="card-text">Your time is limited. Don't waste it living someone else's life</p>
-              <p class="mt-auto p-2">- Steve Jobs -</p>
-            </div>
-          </div>
-          <br>
-
-          <!-- Articles Bar -->
-          <div class="d-flex col2">
-            <div class="d-flex p-2">
-              <div class="p-2 align-items-center">Published</div>
-              <div class="count-published">
-                <p class="d-flex justify-content-center mt-1">{{ published }}</p>
-              </div>
-            </div>
-            <div class="d-flex p-2">
-              <div class="p-2 align-items-center">Drafts</div>
-              <div class="count-drafts">
-                <p class="d-flex justify-content-center mt-1">{{ drafts }}</p>
-              </div>
-            </div>
-
-            <!-- Filter -->
-            <div class="btn-group ml-auto p-2 mr-2">
-              <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="article.." aria-label="Search" v-model="filter">
-                <a href="" v-on:click.prevent="filterSearch"><img src="https://img.icons8.com/cotton/30/000000/search.png"></a>
-              </form>
-            </div>
-          </div>
-          <div class="d-flex col2 mt-2 listJournal" v-for="article in filterArticle">
-            <div class="d-flex m-2 col-11">
-              <img :src="article.image" alt="" class="img-thumbnail" v-if="article.image">
-              <div class="m-3 flex-column" id="content">
-                <h3> {{ article.title }}</h3>
-                <p v-html="article.content"></p>
-              </div>
-            </div>
-            <div class="ml-auto m-1 mr-0">
-              <a href="" v-on:click.prevent="updateSoon(article)"><img src="https://img.icons8.com/cotton/30/000000/multi-edit.png">&nbsp;</a>
-              <a href="" v-on:click.prevent="deleteArticle(article)"><img src="https://img.icons8.com/cotton/30/000000/delete.png"></a>
-            </div>
+      <div class="col mt-5 mr-5 border border-primary" v-if="page_status === 'public'">
+        <div>
+          <h4 class="text-center">Welcome to JURVIO</h4>
+          <div class="d-flex justify-content-center">
           </div>
         </div>
       </div>
     </div>
-    <br><br><br>
-
-    <!-- create new -->
-    <div id="create" v-if="pageRender === 'write'">
-      <form v-on:submit.prevent="createArticle">
-        <div class="form-group">
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title" v-model="title">
-        </div>
-      </form>
-      <div>
-        <wysiwyg v-model="text" />
-      </div>
-      <button type="submit" class="btn btn-success" v-on:click.prevent="createArticle">Save</button>
+    <div>
+      <new_article v-if="page_status === 'write'"></new_article>
+      <stories @page_status="editArticle" :my_stories="my_stories" v-if="page_status === 'stories'"></stories>
+      <read_more :article="read_more" v-if="page_status === 'read_more'"></read_more>
+      <update_article @page_status="renderPage" :article="update_article" v-if="page_status === 'update'"></update_article>
     </div>
 
-    <!-- update article -->
-    <div id="create" v-if="updateData">
-      <form v-on:submit.prevent="updateArticle">
-        <div class="form-group">
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="updateData.title">
-        </div>
-      </form>
-      <div>
-        <wysiwyg v-model="updateData.content" />
-      </div>
-      <button type="submit" class="btn btn-success" v-on:click.prevent="updateArticle(updateData)">Update</button>
-    </div>
 
-    <!-- Modal DELETE-->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Are you sure?</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Once this file deleted, you can't recover it again.
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            <button type="button" class="btn btn-primary" v-on:click.prevent="deleteArticle(article)">Yes</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
 
   </div>
 
+
   <script src="/wysiwyg.js"></script>
-  <script>
-    const serverUrl = `http://localhost:3000`
-
-    new Vue({
-      el: `#app`,
-      created: function () {
-        axios.get(`${serverUrl}/articles`)
-          .then(({ data }) => {
-            this.allArticles = data;
-            this.drafts = data.length;
-          })
-          .catch((err) => {
-            swal("Oops!", err , "error");
-          })
-      },
-      data: {
-        published: 0,
-        drafts: 0,
-        allArticles: [],
-        title: '',
-        text: '',
-        filter: '',
-        image: '',
-        pageRender: 'home',
-        updateData: null,
-      },
-      components: {
-        wysiwyg: vueWysiwyg.default.component,
-      },
-      computed: {
-        filterArticle() {
-          let articles = [];
-          this.allArticles.forEach(article => {
-            if (article.title.includes(this.filter)) {
-              articles.push(article)
-            }
-          })
-          return articles;
-        }
-      },
-      methods: {
-        createArticle() {
-          this.updateData = null;
-          axios.post(`${serverUrl}/articles`, {
-            title: this.title,
-            content: this.text
-          })
-            .then(({ data }) => {
-              this.pageRender = 'home'
-            })
-            .catch(err => {
-              swal("Oops!", err , "error");
-            })
-        },
-
-        updateArticle(article) {
-          axios.put(`${serverUrl}/articles/${article._id}`, {
-            title: this.updateData.title,
-            content: this.updateData.text
-          })
-            .then(data => {
-              this.pageRender = 'home'
-              swal("Success!", "Your article has been updated", "success");
-              this.updateData = null;
-            })
-            .catch(err => {
-              swal("Oops!", err , "error");
-            })
-        },
-
-        deleteArticle(article) {
-          swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this file!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-          })
-            .then((willDelete) => {
-              if (willDelete) {
-                axios.delete(`${serverUrl}/articles/${article._id}`)
-                  .then(data => {
-                    this.pageRender = 'home'
-                  })
-                  .catch(err => {
-                    swal("Oops!", err , "error");
-                  })
-              } else {
-                swal("Your file is safe!");
-              }
-            });
-        },
-
-        filterSearch() {
-          let articles = [];
-          this.allArticles.forEach(article => {
-            if (article.title.includes(this.filter)) {
-              articles.push(article)
-            }
-          })
-          this.allArticles = articles;
-        },
-
-        render(input) {
-          this.pageRender = input;
-        },
-        updateSoon(article) {
-          this.pageRender = false;
-          this.updateData = article;
-        },
-      }
-    })
-
-  </script>
+  <script src="assets/components/navbar_bf_login.js"></script>
+  <script src="assets/components/navbar_af_login.js"></script>
+  <script src="assets/components/events_of_the_day.js"></script>
+  <script src="assets/components/register.js"></script>
+  <script src="assets/components/login.js"></script>
+  <script src="assets/components/create_new_article.js"></script>
+  <script src="assets/components/my_stories.js"></script>
+  <script src="assets/components/read_more.js"></script>
+  <script src="assets/components/update_article.js"></script>
+  <script src="script.js"></script>
 </body>
+
 
 </html>

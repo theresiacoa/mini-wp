@@ -1,2 +1,13 @@
 PORT=
+jwt_secret=
+
 databaseUrl=
+projectId=
+bucketName=
+CLOUD_BUCKET=
+GCLOUD_PROJECT=
+KEYFILE_PATH=
+
+google_signin_client_id=
+google_signin_client_secret=
+fixed_password_googleSignIn=

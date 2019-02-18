@@ -13,9 +13,39 @@ class ArticleController {
       })
   }
 
-  static create(req, res) {
+  static perArticle(req, res) {
+    Article 
+      .findOne({_id: req.params.articleId})
+      .then(article => {
+        res.json(article)
+      })
+      .catch(err => {
+        res.status(500).json({err: err.message})
+      })
+  }
+
+  static allMyStories(req, res) {
     Article
-      .create(req.body)
+      .find({UserId: req.decoded.id})
+      .then(data => {
+        res.json(data)
+      })
+      .catch(err => {
+        res.status(500).json({err: err.message})
+      })
+  }
+
+  static create(req, res) {
+    let newData = {
+      title: req.body.title,
+      content: req.body.content,
+      created_at: new Date().toLocaleDateString(),
+      author: req.decoded.username,
+      featured_image: req.file.cloudStoragePublicUrl,
+      UserId: req.decoded.id,
+    }
+    Article
+      .create(newData)
       .then(data => {
         res.json(data);
       })
@@ -25,22 +55,22 @@ class ArticleController {
   } 
 
   static update(req, res) {
-    let permittedKeys = ['title', 'content'];
+    let permittedKeys = ['title', 'content', 'featured_image'];
     let input = req.body;
     let filtered = {};
     permittedKeys.forEach(key => {
-      console.log(key);
-      console.log(req.body)
-      // console.log(input[key]);
       if (input[key]) {
         filtered[key] = input[key]
       }
     });
-    console.log(filtered);
+
+    if (req.file) {
+      filtered.featured_image = req.file.cloudStoragePublicUrl
+    }
+
     Article
       .findByIdAndUpdate(req.params.articleId, filtered, {new: true})
       .then(data => {
-        // console.log(data);
         res.json(data);
       })
       .catch(err => {
@@ -49,7 +79,7 @@ class ArticleController {
   }
 
   static delete(req, res) {
-
+    console.log(req.params.articleId)
     Article
       .findByIdAndDelete(req.params.articleId)
       .then(data => {
